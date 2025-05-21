@@ -1,28 +1,31 @@
-// src/components/UserForm.jsx
-import React from 'react';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSchema } from "../utils/validation";
 
-const UserForm = ({ form, onChange, onSubmit, errors }) => (
-  <form onSubmit={onSubmit}>
-    <input
-      name="name"
-      value={form.name}
-      onChange={onChange}
-      placeholder="Name"
-      required
-    />
-    {errors.name && <small style={{ color: 'red' }}>{errors.name}</small>}
+const UserForm = React.memo(({ onSubmit, defaultValues }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues,
+    resolver: zodResolver(userSchema),
+  });
 
-    <input
-      name="email"
-      value={form.email}
-      onChange={onChange}
-      placeholder="Email"
-      required
-    />
-    {errors.email && <small style={{ color: 'red' }}>{errors.email}</small>}
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input placeholder="Name" {...register("name")} />
+      {errors.name && (
+        <small style={{ color: "red" }}>{errors.name.message}</small>
+      )}
 
-    <button type="submit">Submit</button>
-  </form>
-);
+      <input placeholder="Email" {...register("email")} />
+      {errors.email && <small style={{ color: "red" }}>{errors.email.message}</small>}
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+});
 
 export default UserForm;
