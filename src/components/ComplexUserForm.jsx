@@ -31,7 +31,7 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
   return (
     <form onSubmit={handleSubmit(submitHandler)} className="space-y-6">
       {/* Personal Info */}
-      <div className="border">
+      <div className="border p-4 rounded space-y-4">
         <h3 className="font-bold">Personal Info</h3>
         <div>
           <label>Name:</label>
@@ -42,7 +42,7 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
             }
             className="w-full border p-2"
           />
-          {errors?.personalInfo.name && (
+          {errors?.personalInfo?.name && (
             <p className="text-red-500">{errors.personalInfo.name.message}</p>
           )}
         </div>
@@ -56,13 +56,13 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
             }
             className="w-full border p-2"
           />
-          {errors?.personalInfo.email && (
+          {errors?.personalInfo?.email && (
             <p className="text-red-500">{errors.personalInfo.name.email}</p>
           )}
         </div>
       </div>
       {/* Role Info */}
-      <div className="border">
+      <div className="border p-4 rounded space-y-4">
         <h3 className="font-bold">Role Info</h3>
 
         <div>
@@ -79,8 +79,9 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
 
         <div>
           <label>Permissions:</label>
-          <div className="flex">
-            <label>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {['read','write', 'delete'].map((perm) =>(
+            <label key={perm} className="inline-flex items-center" >
               <input
                 type="checkbox"
                 checked={state.roleDetails.permissions.includes(perm)}
@@ -94,16 +95,17 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
               />
               {perm}
             </label>
+            ))}
           </div>
 
-          {errors?.personalInfo.email && (
-            <p className="text-red-500">{errors.personalInfo.name.email}</p>
+          {errors?.roleDetails?.permissions && (
+            <p className="text-red-500">{errors.roleDetails.permissions.message}</p>
           )}
         </div>
       </div>
 
       {/* ADDRESS */}
-      <div className="border">
+      <div className="border p-4 rounded space-y-4">
         <h3 className="font-bold">Address</h3>
         <div>
           <label>Street:</label>
@@ -124,7 +126,7 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
             onChange={(e) => updateField("address", "city", e.target.value)}
             className="w-full border p-2"
           />
-          {errors?.address?.street && (
+          {errors?.address?.city && (
             <p className="text-red-500">{errors.address.city.message}</p>
           )}
         </div>
@@ -133,16 +135,16 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
           <label>Country:</label>
           <input
             value={state.address.country}
-            onChange={(e) => updateField("address", "street", e.target.value)}
+            onChange={(e) => updateField("address", "country", e.target.value)}
             className="w-full border p-2"
           />
-          {errors?.address?.street && (
+          {errors?.address?.country && (
             <p className="text-red-500">{errors.address.country.message}</p>
           )}
         </div>
       </div>
 
-      <button tyoe="submit" className="bg-blue-500x">Submit</button>
+      <button tyoe="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
     </form>
   );
 };
