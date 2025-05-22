@@ -4,7 +4,7 @@ import useLocalStorageCrud from '../hooks/useLocalStorageCrud';
 import UserForm from '../components/UserForm';
 import { toast } from 'react-toastify';
 
-const CreateUser = () => {
+const CreateUser = (data) => {
   const navigate = useNavigate();
   const { createItem } = useLocalStorageCrud();
 
