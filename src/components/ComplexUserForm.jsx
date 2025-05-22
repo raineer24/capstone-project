@@ -20,7 +20,7 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
   const submitHandler = (data) => {
     try {
       // Validate again just in case
-      complexUserSchema.parse(data);
+      complexUserSchema.parse(state);
       onSubmit(data);
       toast.success("User saved successfully");
     } catch (error) {
@@ -144,7 +144,7 @@ const ComplexUserForm = ({ onSubmit, initialValues }) => {
         </div>
       </div>
 
-      <button tyoe="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rouded">Submit</button>
     </form>
   );
 };

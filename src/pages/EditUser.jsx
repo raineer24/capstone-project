@@ -13,6 +13,24 @@ const EditUser = () => {
   const { getItemById, updateItem } = useLocalStorageCrud();
   const user = getItemById(id);
 
+  //const user = getItemById(id);
+
+// Convert flat object to nested structure
+const initialValues = {
+  personalInfo: {
+    name: user.name,
+    email: user.email
+  },
+  roleDetails: {
+    role: user.role || '',
+    permissions: user.permissions || []
+  },
+  address: {
+    street: user.street || '',
+    city: user.city || '',
+    country: user.country || ''
+  }
+};
   if (!user) {
     toast.error("User not found!");
     navigate("/");
@@ -29,7 +47,7 @@ const EditUser = () => {
   return (
     <div className="max-w-md mx-auto mt-8">
       <h1 className="text-2xl font-bold mb-4">Edit User</h1>
-      <ComplexUserForm onSubmit={handleUpdate} initialValues={user} />
+      <ComplexUserForm onSubmit={handleUpdate} initialValues={initialValues} />
     </div>
   );
 };
