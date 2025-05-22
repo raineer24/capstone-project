@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
-import ComplexUserForm from "../components/ComplexUserForm";
+import{ ComplexUserForm }from "../components/ComplexUserForm";
 import useLocalStorageCrud from "../hooks/useLocalStorageCrud";
 
 const EditUser = () => {

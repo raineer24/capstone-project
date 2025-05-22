@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useLocalStorageCrud from "../hooks/useLocalStorageCrud";
-import  ComplexUserForm  from "../components/ComplexUserForm";
+import { ComplexUserForm } from "../components/ComplexUserForm";
 
 const CreateUser = () => {
   const navigate = useNavigate();
