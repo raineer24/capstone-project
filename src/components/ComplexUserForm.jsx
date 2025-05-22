@@ -6,7 +6,7 @@ import { useFormReducer } from '../hooks/useFormReducer';
 import { toast } from 'react-toastify';
 
 export const ComplexUserForm = React.memo(({ onSubmit, initialValues }) => {
-  // Setup react-hook-form
+  // Initialize react-hook-form
   const methods = useForm({
     resolver: zodResolver(complexUserSchema),
     defaultValues: initialValues || {
@@ -21,20 +21,21 @@ export const ComplexUserForm = React.memo(({ onSubmit, initialValues }) => {
     register,
     setValue,
     watch,
-    reset
+    reset,
+    formState: { errors }
   } = methods;
 
-  // Setup reducer
+  // Use reducer to manage nested state
   const { state, updateField } = useFormReducer(initialValues);
 
-  // Reset form when initialValues change (Edit User)
+  // Reset form when initialValues change (e.g. in EditUser)
   useEffect(() => {
     if (initialValues) {
       reset(initialValues);
     }
   }, [initialValues, reset]);
 
-  // Watch all form values and sync them into reducer
+  // Watch all form values and sync into reducer
   const formValues = watch();
 
   useEffect(() => {
@@ -60,43 +61,54 @@ export const ComplexUserForm = React.memo(({ onSubmit, initialValues }) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(submitHandler)} className="space-y-6">
+      <form onSubmit={handleSubmit(submitHandler)} className="space-y-6 max-w-xl mx-auto">
         {/* Personal Info */}
         <div className="border p-4 rounded space-y-4">
-          <h3 className="font-bold">Personal Info</h3>
+          <h3 className="font-bold text-lg">Personal Info</h3>
+
           <div>
-            <label>Name:</label>
+            <label className="block mb-1">Name:</label>
             <input
               {...register("personalInfo.name")}
               placeholder="Name"
               className="w-full border p-2"
             />
+            {errors?.personalInfo?.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.personalInfo.name.message}</p>
+            )}
           </div>
 
           <div>
-            <label>Email:</label>
+            <label className="block mb-1">Email:</label>
             <input
               {...register("personalInfo.email")}
               placeholder="Email"
               className="w-full border p-2"
             />
+            {errors?.personalInfo?.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.personalInfo.email.message}</p>
+            )}
           </div>
         </div>
 
         {/* Role Info */}
         <div className="border p-4 rounded space-y-4">
-          <h3 className="font-bold">Role Info</h3>
+          <h3 className="font-bold text-lg">Role Info</h3>
+
           <div>
-            <label>Role:</label>
+            <label className="block mb-1">Role:</label>
             <input
               {...register("roleDetails.role")}
               placeholder="Role"
               className="w-full border p-2"
             />
+            {errors?.roleDetails?.role && (
+              <p className="text-red-500 text-sm mt-1">{errors.roleDetails.role.message}</p>
+            )}
           </div>
 
           <div>
-            <label>Permissions:</label>
+            <label className="block mb-1">Permissions:</label>
             <div className="flex flex-wrap gap-2 mt-2">
               {['read', 'write', 'delete'].map((perm) => (
                 <label key={perm} className="inline-flex items-center">
@@ -117,40 +129,58 @@ export const ComplexUserForm = React.memo(({ onSubmit, initialValues }) => {
                 </label>
               ))}
             </div>
+            {errors?.roleDetails?.permissions && (
+              <p className="text-red-500 text-sm mt-1">{errors.roleDetails.permissions.message}</p>
+            )}
           </div>
         </div>
 
         {/* Address Info */}
         <div className="border p-4 rounded space-y-4">
-          <h3 className="font-bold">Address</h3>
+          <h3 className="font-bold text-lg">Address</h3>
+
           <div>
-            <label>Street:</label>
+            <label className="block mb-1">Street:</label>
             <input
               {...register("address.street")}
               placeholder="Street"
               className="w-full border p-2"
             />
+            {errors?.address?.street && (
+              <p className="text-red-500 text-sm mt-1">{errors.address.street.message}</p>
+            )}
           </div>
+
           <div>
-            <label>City:</label>
+            <label className="block mb-1">City:</label>
             <input
               {...register("address.city")}
               placeholder="City"
               className="w-full border p-2"
             />
+            {errors?.address?.city && (
+              <p className="text-red-500 text-sm mt-1">{errors.address.city.message}</p>
+            )}
           </div>
+
           <div>
-            <label>Country:</label>
+            <label className="block mb-1">Country:</label>
             <input
               {...register("address.country")}
               placeholder="Country"
               className="w-full border p-2"
             />
+            {errors?.address?.country && (
+              <p className="text-red-500 text-sm mt-1">{errors.address.country.message}</p>
+            )}
           </div>
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        >
           Submit
         </button>
       </form>
