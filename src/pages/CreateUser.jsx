@@ -1,10 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorageCrud from '../hooks/useLocalStorageCrud';
-import UserForm from '../components/UserForm';
-import { toast } from 'react-toastify';
+import { ComplexUserForm} from '../components/ComplexUserForm';
 
-const CreateUser = (data) => {
+const CreateUser = () => {
   const navigate = useNavigate();
   const { createItem } = useLocalStorageCrud();
 
@@ -16,8 +15,8 @@ const CreateUser = (data) => {
 
   return (
     <div className='max-w-md mx-auto mt-8'>
-      <h2 className='text-2xl mb-4'>Create User</h2>
-      <UserForm onSubmit={handleCreate}/>
+      <h1 className='text-2xl font-bold mb-4'>Create User</h1>
+      <ComplexUserForm onSubmit={handleCreate}/>
     </div>
   );
 };
