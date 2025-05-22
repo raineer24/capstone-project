@@ -12,23 +12,12 @@ const Home = () => {
     }
   };
 
-  const userList = useMemo(
-    () =>
-      items.map((user) => (
-        <li key={user.id}>
-          {user.name} - {user.email}
-          <button onClick={() => navigate(`/edit/${user.id}`)}>Edit</button>
-          <button onClick={() => handleDelete(user.id)}>Delete</button>
-        </li>
-      )),
-    [items]
-  );
 
   return (
     <div className="max-w-4xl mx-auto mt-8">
        <h1 className="text-3xl mb-4">User Dashboard</h1>
       <Link to="/create" className="bg-green-500 text-white px-4 mb-4 inline-block">Add New User</Link>
-      <ul>{userList}</ul>
+    
       <table className="w-ful border-collapse mt-4">
         <thead>
           <tr>

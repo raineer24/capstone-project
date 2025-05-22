@@ -4,7 +4,7 @@ import { BrowserRouter,Routes, Route, Navigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import CreateUser from '../pages/CreateUser';
 import EditUser from '../pages/EditUser';
-import Dashboard from '../pages/Dashboard';
+
 
 const AppRouter = () => (
  <BrowserRouter>

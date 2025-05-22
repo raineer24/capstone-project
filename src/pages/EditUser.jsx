@@ -4,9 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
-import { ComplexUserForm } from '../components/ComplexUserForm';
+import ComplexUserForm from "../components/ComplexUserForm";
 import useLocalStorageCrud from "../hooks/useLocalStorageCrud";
-import { userSchema } from "../utils/validation";
 
 const EditUser = () => {
   const { id } = useParams();
@@ -21,13 +20,14 @@ const EditUser = () => {
 
   const handleUpdate = (data) => {
     updateItem({
-     ...data, id
+      ...data,
+      id,
     });
     navigate("/");
   };
 
   return (
-    <div className='max-w-md mx-auto mt-8'>
+    <div className="max-w-md mx-auto mt-8">
       <h1 className="text-2xl font-bold mb-4">Edit User</h1>
       <ComplexUserForm onSubmit={handleUpdate} initialValues={user} />
     </div>
