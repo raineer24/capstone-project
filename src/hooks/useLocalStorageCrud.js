@@ -8,7 +8,7 @@ export const useLocalStorageCrud = () => {
   const [items, setItems] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(saved) : [];
+      return saved ? JSON.parse(saved) : [];
     } catch (error) {
       console.error('Failed to load localStorage:', error);
       return [];
