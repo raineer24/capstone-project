@@ -1,55 +1,53 @@
-// src/pages/EditUser.jsx
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "react-toastify";
-import{ ComplexUserForm }from "../components/ComplexUserForm";
-import useLocalStorageCrud from "../hooks/useLocalStorageCrud";
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ComplexUserForm } from '../components/ComplexUserForm';
+import { useLocalStorageCrud } from '../hooks/useLocalStorageCrud';
 
-const EditUser = () => {
+export const EditUser = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getItemById, updateItem } = useLocalStorageCrud();
+
+  // Get user data from localStorage
   const user = getItemById(id);
 
-  //const user = getItemById(id);
-
-// Convert flat object to nested structure
-const initialValues = {
-  personalInfo: {
-    name: user.name,
-    email: user.email
-  },
-  roleDetails: {
-    role: user.role || '',
-    permissions: user.permissions || []
-  },
-  address: {
-    street: user.street || '',
-    city: user.city || '',
-    country: user.country || ''
-  }
-};
   if (!user) {
-    toast.error("User not found!");
-    navigate("/");
+    // Handle "User not found"
+    return (
+      <div className="text-red-500 text-center p-4">
+        User not found!
+      </div>
+    );
   }
 
-  const handleUpdate = (data) => {
-    updateItem({
-      ...data,
-      id,
-    });
-    navigate("/");
+  // Transform flat object (if needed) into nested format
+  const initialValues = {
+    personalInfo: {
+      name: user.personalInfo?.name || user.name || '',
+      email: user.personalInfo?.email || user.email || ''
+    },
+    roleDetails: {
+      role: user.roleDetails?.role || user.role || '',
+      permissions: user.roleDetails?.permissions || user.permissions || []
+    },
+    address: {
+      street: user.address?.street || user.street || '',
+      city: user.address?.city || user.city || '',
+      country: user.address?.country || user.country || ''
+    }
+  };
+
+  const handleUpdate = (formData) => {
+    // Update user with full nested structure
+    updateItem({ ...formData, id });
+    navigate('/');
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
+    <div className="max-w-xl mx-auto mt-8">
       <h1 className="text-2xl font-bold mb-4">Edit User</h1>
       <ComplexUserForm onSubmit={handleUpdate} initialValues={initialValues} />
     </div>
   );
 };
-
 export default EditUser;
