@@ -36,14 +36,16 @@ function formReducer(state, action) {
 }
 
 // Custom Hook
-export const  useFormReducer = (initialStateOverride = initialState) => {
-    const [state, dispatch] = useReducer(formReducer, initialStateOverride)
+export const useFormReducer = (initialStateOverride = initialState) => {
+  const [state, dispatch] = useReducer(formReducer, initialStateOverride);
 
-    const updateField = (sectiom, field, value) => {
-        dispatch({ type: 'updateField', section, field, value})
-    }
+  const updateField = (section, field, value) => {
+    dispatch({ type: "updateField", section, field, value });
+  };
 
-    const resetForm = () => {
-        dispatch({ type: 'reset'});
-    }
-}
+  const resetForm = () => {
+    dispatch({ type: "reset" });
+  };
+
+  return { state, updateField, resetForm };
+};
