@@ -16,6 +16,7 @@ const UserForm = React.memo(({ onSubmit, defaultValues }) => {
   });
 
   const submitHandler = (data) => {
+      console.log('Raw Data:', data);
     onSubmit(data);
   };
 

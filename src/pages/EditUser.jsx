@@ -14,20 +14,23 @@ const EditUser = () => {
   const { getItemById, updateItem } = useLocalStorageCrud();
   const user = getItemById(id);
 
-
   if (!user) {
-    toast.error('User not found!');
-    navigate('/')
-
+    toast.error("User not found!");
+    navigate("/");
   }
 
- 
   const handleUpdate = (data) => {
-    updateItem( ...data, id);
+    console.log("Form Data:", data);
+    updateItem({
+      id,
+      name: data.name,
+      email: data.email,
+      role: data.role,
+    });
     navigate("/");
   };
 
-return (
+  return (
     <div>
       <h1 className="text-2xl">Edit User</h1>
       <UserForm onSubmit={handleUpdate} defaultValues={user} />
