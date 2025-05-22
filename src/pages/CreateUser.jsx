@@ -1,39 +1,25 @@
-// src/pages/CreateUser.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import UserForm from '../components/UserForm';
 import useLocalStorageCrud from '../hooks/useLocalStorageCrud';
-import { userSchema } from '../utils/validation';
+import UserForm from '../components/UserForm';
+import { toast } from 'react-toastify';
 
-const CreateUser = () => {
-  const { create } = useLocalStorageCrud('users');
-  const [form, setForm] = useState({ name: '', email: '' });
-  const [errors, setErrors] = useState({});
+const CreateUser = (data) => {
   const navigate = useNavigate();
+  const { createItem } = useLocalStorageCrud();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleCreate = (data) => {
+    console.log(data,'data!')
+    createItem(data);
+    navigate('/')
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const result = userSchema.safeParse(form);
-    if (!result.success) {
-      const fieldErrors = {};
-      result.error.errors.forEach((err) => {
-        fieldErrors[err.path[0]] = err.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-
-    create(form);
-    toast.success('User created');
-    navigate('/');
-  };
-
-  return <UserForm form={form} onChange={handleChange} onSubmit={handleSubmit} errors={errors} />;
+  return (
+    <div className='max-w-md mx-auto mt-8'>
+      <h2 className='text-2xl mb-4'>Create User</h2>
+      <UserForm onSubmit={handleCreate}/>
+    </div>
+  );
 };
 
 export default CreateUser;
