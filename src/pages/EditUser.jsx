@@ -20,7 +20,6 @@ const EditUser = () => {
   }
 
   const handleUpdate = (data) => {
-    console.log("Form Data:", data);
     updateItem({
       id,
       name: data.name,

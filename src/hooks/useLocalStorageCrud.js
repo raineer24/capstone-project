@@ -29,7 +29,7 @@ export const useLocalStorageCrud = () => {
 
  
   // UPDATE
-  const updateItem = (updateItem) => {
+  const updateItem = (updatedItem) => {
     setItems((prev) =>
       prev.map((item) => 
         item.id === updatedItem.id ? updatedItem : item
