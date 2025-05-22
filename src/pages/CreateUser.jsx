@@ -6,18 +6,17 @@ import { toast } from 'react-toastify';
 
 const CreateUser = () => {
   const navigate = useNavigate();
-  const { addItem } = useLocalStorageCrud('users');
+  const { createItem } = useLocalStorageCrud();
 
-  const handleSubmit = (data) => {
-    addItem(data);
-    toast.success('User created!');
-    navigate('/');
+  const handleCreate = (data) => {
+    createItem(data);
+    navigate('/')
   };
 
   return (
-    <div>
-      <h2>Create User</h2>
-      <UserForm defaultValues={{ name: '', email: '' }} onSubmit={handleSubmit} />
+    <div className='max-md mx-auto mt-8'>
+      <h2 className='text-2xl mb-4'>Create User</h2>
+      <UserForm onSubmit={handleCreate}/>
     </div>
   );
 };

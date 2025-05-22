@@ -22,8 +22,6 @@ const UserForm = React.memo(({ onSubmit, defaultValues }) => {
   return (
     
     <form onSubmit={handleSubmit(submitHandler)} className="space-y-4">
-      <div className="p-6 bg-green-500 text-white">Tailwind Works!</div>
-      <div className="p-6 bg-green-500 text-white">Tailwind Works!</div>
       <div>
         <label>Name:</label>
         <input

@@ -25,7 +25,6 @@ const Home = () => {
   return (
     
     <div>
-      <div className="p-6 bg-green-500 text-white">Tailwind Works!</div>
       <h2>User List</h2>
       <Link to="/create">Add New User</Link>
       <ul>{userList}</ul>
