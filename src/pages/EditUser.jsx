@@ -30,7 +30,7 @@ const EditUser = () => {
   };
 
   return (
-    <div>
+    <div className='max-w-md mx-auto mt-8'>
       <h1 className="text-2xl">Edit User</h1>
       <UserForm onSubmit={handleUpdate} defaultValues={user} />
     </div>

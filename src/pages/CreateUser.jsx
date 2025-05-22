@@ -9,12 +9,13 @@ const CreateUser = (data) => {
   const { createItem } = useLocalStorageCrud();
 
   const handleCreate = (data) => {
+    console.log(data,'data!')
     createItem(data);
     navigate('/')
   };
 
   return (
-    <div className='max-md mx-auto mt-8'>
+    <div className='max-w-md mx-auto mt-8'>
       <h2 className='text-2xl mb-4'>Create User</h2>
       <UserForm onSubmit={handleCreate}/>
     </div>

@@ -1,14 +1,16 @@
 // src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "react-toastify/dist/ReactToastify.css";
 // src/main.jsx
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css'; // <-- Import CSS
+import { ToastContainer } from 'react-toastify';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
+    <ToastContainer /> 
   </React.StrictMode>
 );

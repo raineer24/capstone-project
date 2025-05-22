@@ -9,7 +9,6 @@ const Home = () => {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure?")) {
       deleteItem(id);
-      toast.success("User deleted");
     }
   };
 
