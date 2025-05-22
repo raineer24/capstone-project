@@ -37,6 +37,8 @@ Build a reusable, scalable React CRUD application that demonstrates modern React
 ---
 
 ## 📁 Folder Structure
+
+```
 src/
 ├── components/ # Reusable UI components
 │ ├── UserForm.jsx # Simple form component
