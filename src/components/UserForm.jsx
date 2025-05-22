@@ -20,13 +20,16 @@ const UserForm = React.memo(({ onSubmit, defaultValues }) => {
   };
 
   return (
+    
     <form onSubmit={handleSubmit(submitHandler)} className="space-y-4">
+      <div className="p-6 bg-green-500 text-white">Tailwind Works!</div>
+      <div className="p-6 bg-green-500 text-white">Tailwind Works!</div>
       <div>
         <label>Name:</label>
         <input
           placeholder="Name"
           {...register("name")}
-          className="border-w-full p-2"
+          className="border w-full p-2"
         />
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
       </div>
@@ -36,7 +39,7 @@ const UserForm = React.memo(({ onSubmit, defaultValues }) => {
         <input
           placeholder="Email"
           {...register("email")}
-          className="border-w-full p-2"
+          className="border w-full p-2"
         />
         {errors.email && (
           <small style={{ color: "red" }}>{errors.email.message}</small>
@@ -48,7 +51,7 @@ const UserForm = React.memo(({ onSubmit, defaultValues }) => {
         <input
           placeholder="Role"
           {...register("role")}
-          className="border-w-full p-2"
+          className="border w-full p-2"
         />
         {errors.role && (
           <small style={{ color: "red" }}>{errors.role.message}</small>
@@ -57,6 +60,7 @@ const UserForm = React.memo(({ onSubmit, defaultValues }) => {
 
       <button type="submit" className="bg-blue-500 text-white px-4 py-2">Submit</button>
     </form>
+    
   );
 });
 
