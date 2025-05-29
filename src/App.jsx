@@ -1,13 +1,14 @@
 // src/App.jsx
-import React from 'react';
-import AppRouter from './routes/AppRouter';
-import { ToastContainer } from 'react-toastify';
+import React from "react";
+import AppRouter from "./routes/AppRouter";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   return (
     <>
-      <AppRouter />
-
+      <ErrorBoundary>
+        <AppRouter />
+      </ErrorBoundary>
     </>
   );
 }
