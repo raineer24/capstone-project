@@ -16,5 +16,6 @@ test("renders create user form", () => {
     </MemoryRouter>
   );
 
-  expect(screen.getByLabelText(/Name/i)).toBeInTheDoument();
+  
+  expect(screen.getByLabelText(/Name/i)).toBeInTheDocument();
 });
