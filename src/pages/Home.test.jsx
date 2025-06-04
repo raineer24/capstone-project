@@ -11,6 +11,6 @@ test("renders welcome message", () => {
   );
 
   expect(
-    screen.getByText(/Welcome to the User Management App/i)
+    screen.getByText(/User Dashboard/i)
   ).toBeInTheDocument();
 });

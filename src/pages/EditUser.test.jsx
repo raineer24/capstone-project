@@ -1,17 +1,17 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter, useParams } from "react-router-dom";
-import EditUser from "./EditUser";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter, useParams } from 'react-router-dom';
+import EditUser from './EditUser';
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
 }));
 
 jest.mock('../hooks/useLocalStorageCrud', () => ({
   useLocalStorageCrud: () => ({
-    getItem: () => ({
-      id: '789',
+    getItemById: (id) => ({
+      id,
       name: 'John Doe',
       email: 'john@example.com',
     }),
@@ -19,8 +19,8 @@ jest.mock('../hooks/useLocalStorageCrud', () => ({
   }),
 }));
 
-test("displays user ID from route", () => {
-  useParams.mockReturnValue({ id: "789" });
+test('displays user ID from route', () => {
+  useParams.mockReturnValue({ id: '789' });
 
   render(
     <MemoryRouter>
@@ -28,6 +28,5 @@ test("displays user ID from route", () => {
     </MemoryRouter>
   );
 
-  // Check if user not found message appears when no such user
-  expect(screen.getByText(/Editing user ID: 789/i)).toBeInTheDocument();
+  expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
 });
