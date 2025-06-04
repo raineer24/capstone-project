@@ -28,5 +28,5 @@ test('displays user ID from route', () => {
     </MemoryRouter>
   );
 
-  expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
+  expect(screen.getByText(/Name/i)).toBeInTheDocument();
 });

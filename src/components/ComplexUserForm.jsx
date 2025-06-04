@@ -69,6 +69,7 @@ export const ComplexUserForm = React.memo(({ onSubmit, initialValues }) => {
           <div>
             <label className="block mb-1">Name:</label>
             <input
+            id="personalInfo.name"
               {...register("personalInfo.name")}
               placeholder="Name"
               className="w-full border p-2"
