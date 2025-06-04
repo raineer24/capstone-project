@@ -3,9 +3,11 @@ import { render, screen } from "@testing-library/react";
 import CreateUser from "./CreateUser";
 
 test("renders create user form", () => {
-  render(<CreateUser />);
-  expect(
-    screen.getByLabelText(/Name/i)
-  ).toBeInTheDoument();
-});
+  render(
+    <MemoryRouter>
+      <CreateUser />
+    </MemoryRouter>
+  );
 
+  expect(screen.getByLabelText(/Name/i)).toBeInTheDoument();
+});

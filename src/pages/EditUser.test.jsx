@@ -16,5 +16,8 @@ test('displays user ID from route', () => {
             <EditUser />
         </MemoryRouter>
     );
+
+    // Check if user not found message appears when no such user
+  expect(screen.getByText(/User not found!/i)).toBeInTheDocument();
     expect(screen.getByText(/Editing user ID: 789/i)).toBeInTheDocument();
 })
