@@ -1,19 +1,26 @@
 // src/routes/AppRouter.jsx
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Spinner } from "../components/Spinner";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+
+} from "react-router-dom";
+
 
 // Lazy-loaded pages
-const Home = React.lazy(() => import("../pages/Home"));
-const CreateUser = React.lazy(() => import("../pages/CreateUser"));
-const EditUser = React.lazy(() => import("../pages/EditUser"));
+import Home from "../pages/Home";
+import CreateUser from '../pages/CreateUser';
+import EditUser from "../pages/EditUser"
 
 const AppRouter = () => (
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/create" element={<CreateUser />} />
-    <Route path="/edit/:id" element={<EditUser />} />
-  </Routes>
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/create" element={<CreateUser />} />
+      <Route path="/edit/:id" element={<EditUser />} />
+    </Routes>
+  </Router>
 );
 
 export default AppRouter;

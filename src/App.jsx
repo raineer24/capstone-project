@@ -3,14 +3,8 @@ import React from "react";
 import AppRouter from "./routes/AppRouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 
-function App() {
-  return (
-    <>
-      <ErrorBoundary>
-        <AppRouter />
-      </ErrorBoundary>
-    </>
-  );
+const  App =() => {
+  return <AppRouter />
 }
 
 export default App;
