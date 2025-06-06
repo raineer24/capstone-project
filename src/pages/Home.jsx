@@ -1,7 +1,5 @@
-import React, { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useLocalStorageCrud from "../hooks/useLocalStorageCrud";
-import { toast } from "react-toastify";
+
 
 const Home = () => {
   const { items, deleteItem } = useLocalStorageCrud();
