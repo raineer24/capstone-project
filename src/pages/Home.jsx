@@ -21,7 +21,7 @@ const Home = () => {
 
         <div className="space-y-3">
           {users.map(user => (
-            <div className="flex justify-between items-center p-3 border rounded">
+            <div key={user.id} className="flex justify-between items-center p-3 border rounded">
               <div>
                 <div className="font-medium">{user.name}</div>
                 <div className="text-sm text-gray-600">{user.email}</div>
