@@ -9,34 +9,11 @@ const CreateUser = React.lazy(() => import("../pages/CreateUser"));
 const EditUser = React.lazy(() => import("../pages/EditUser"));
 
 const AppRouter = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <React.Suspense fallback={<Spinner />}>
-            <Home />
-          </React.Suspense>
-        }
-      />
-      <Route
-        path="/create"
-        element={
-          <React.Suspense fallback={<Spinner />}>
-            <CreateUser />
-          </React.Suspense>
-        }
-      />
-      <Route
-        path="/edit/:id"
-        element={
-          <React.Suspense fallback={<Spinner />}>
-            <EditUser />
-          </React.Suspense>
-        }
-      />
-    </Routes>
-  </BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/create" element={<CreateUser />} />
+    <Route path="/edit/:id" element={<EditUser />} />
+  </Routes>
 );
 
 export default AppRouter;

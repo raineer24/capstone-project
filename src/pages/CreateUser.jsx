@@ -43,7 +43,7 @@ const CreateUser = () => {
     }
 
     // Simulate API call - replace this with real API call later
-    console.log('Creating user:', data);
+    console.log('Updating user:', data);
 
     // Redirect to home page
     navigate('/');
