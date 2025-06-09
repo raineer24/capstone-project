@@ -1,56 +1,80 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ComplexUserForm } from '../components/ComplexUserForm';
-import { useLocalStorageCrud } from '../hooks/useLocalStorageCrud';
-//import TestError from '../components/TestError';
-
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import PageLayout from "../components/layouts/PageLayout";
+import UserForm from "../components/organisms/UserForm";
 
 export const EditUser = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { getItemById, updateItem } = useLocalStorageCrud();
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [errors, setErrors] = useState({});
 
-  // Get user data from localStorage
-  const user = getItemById(id);
+  useEffect(() => {
+    // Simulate fetching user data - replace with real API call later
+    const mockUser = { name: "John Doe", email: "john15@gmail.com" };
+    setFormData(mockUser);
+  }, [id]);
 
-  if (!user) {
-    // Handle "User not found"
-    return (
-      <div className="text-red-500 text-center p-4">
-        User not found!
-      </div>
-    );
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
-  // Transform flat object (if needed) into nested format
-  const initialValues = {
-    personalInfo: {
-      name: user.personalInfo?.name || user.name || '',
-      email: user.personalInfo?.email || user.email || ''
-    },
-    roleDetails: {
-      role: user.roleDetails?.role || user.role || '',
-      permissions: user.roleDetails?.permissions || user.permissions || []
-    },
-    address: {
-      street: user.address?.street || user.street || '',
-      city: user.address?.city || user.city || '',
-      country: user.address?.country || user.country || ''
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
-  const handleUpdate = (formData) => {
-    // Update user with full nested structure
-    updateItem({ ...formData, id });
-    navigate('/');
+  const validateForm = (data) => {
+    const newErrors = {};
+
+    if (!data.name.trim()) {
+      newErrors.email = "Name is required";
+    }
+
+    if (!data.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    return newErrors;
+  };
+
+  const handleSubmit = (data) => {
+    const validationErrors = validateForm(data);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    // Simulate API call - replace this with real API call later
+    console.log("Updating user:", data);
+
+    // Redirect to home page
+    navigate("/");
+  };
+
+  const handleCancel = () => {
+    navigate("/");
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-8">
-      <h1 className="text-2xl font-bold mb-4">Edit User</h1>
- 
-      <ComplexUserForm onSubmit={handleUpdate} initialValues={initialValues} />
-    </div>
+    <PageLayout title="Update User">
+      <div className="bg-white rounded-lg shadow p-6">
+        <UserForm
+          formData={formData}
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          errors={errors}
+          submitText="Update User"
+          showCancel={true}
+          onCancel={handleCancel}
+        />
+      </div>
+    </PageLayout>
   );
 };
+
 export default EditUser;

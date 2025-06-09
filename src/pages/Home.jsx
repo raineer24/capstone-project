@@ -1,51 +1,41 @@
-import React, { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useLocalStorageCrud from "../hooks/useLocalStorageCrud";
-import { toast } from "react-toastify";
+import PageLayout from "../components/layouts/PageLayout";
+import Button from "../components/atoms/Button";
+
 
 const Home = () => {
-  const { items, deleteItem } = useLocalStorageCrud();
-
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure?")) {
-      deleteItem(id);
-    }
-  };
+  const users = [
+    {id: 1, name: 'John Doe', email: 'johndoe32@gmail.com'},
+     {id: 2, name: 'Jane Smith', email: 'janesmitht31@gmail.com'}
+  ];
 
   return (
-    <div className="max-w-4xl mx-auto mt-8">
-      <h1 className="text-3xl mb-4">User Dashboard</h1>
-      <Link to="/create" className="bg-green-500 text-white px-4 py-2 inline-block mb-4">
-        Add New User
-      </Link>
+    <PageLayout title='User List'>
+      <div className="bg-white rounded-lg shadow p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-medium">All Users</h2>
+          <Link to='/create'>
+          <Button>Add New User</Button>
+          </Link>
+        </div>
 
-      <table className="w-full border-collapse mt-4">
-        <thead>
-          <tr>
-            <th className="border p-2">ID</th>
-            <th className="border p-2">Name</th>
-            <th className="border p-2">Email</th>
-            <th className="border p-2">Role</th>
-            <th className="border p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((user) => (
-            <tr key={user.id}>
-              <td className="border p-2">{user.id}</td>
-              <td className="border p-2">{user.personalInfo?.name || ''}</td>
-              <td className="border p-2">{user.personalInfo?.email || ''}</td>
-              <td className="border p-2">{user.roleDetails?.role || ''}</td>
-              <td className="border p-2 text-center space-x-2">
-                <Link to={`/edit/${user.id}`} className="text-blue-500">Edit</Link>
-                <button onClick={() => handleDelete(user.id)} className="text-red-500">Delete</button>
-              </td>
-            </tr>
+        <div className="space-y-3">
+          {users.map(user => (
+            <div key={user.id} className="flex justify-between items-center p-3 border rounded">
+              <div>
+                <div className="font-medium">{user.name}</div>
+                <div className="text-sm text-gray-600">{user.email}</div>
+              </div>
+              <Link to={`/edit/${user.id}`}>
+              <Button variant="secondary">Edit</Button>
+              </Link>
+            </div>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </div>
+      </div>
+    </PageLayout>
   );
-};
+
+}
 
 export default Home;
