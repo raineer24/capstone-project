@@ -1,14 +1,14 @@
+// src/data/sampleProduct.js
 export const sampleProduct = {
     id: 1,
     name: 'Premium BJJ Gi',
     description: 'High-quality Brazilian Jiu-Jitsu gi made from durable cotton. Perfect for training and competition.',
     price: 3599,
-    variants: ['A1','A2','A3','A4',],
+    variants: ['A1', 'A2', 'A3', 'A4'],
     images: [
-    'https://via.placeholder.com/500x500/4F46E5/ffffff?text=Front+View',
-    'https://via.placeholder.com/500x500/7C3AED/ffffff?text=Back+View',
-    'https://via.placeholder.com/500x500/059669/ffffff?text=Side+View',
-    'https://via.placeholder.com/500x500/DC2626/ffffff?text=Detail+View'
-  ]
-
-}
+        'https://picsum.photos/500/500?random=10',
+        'https://picsum.photos/500/500?random=20',
+        'https://picsum.photos/500/500?random=30',
+        'https://picsum.photos/500/500?random=40'
+    ]
+};

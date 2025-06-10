@@ -9,6 +9,10 @@ const ProductDisplay = ({ product }) => {
 
   const { addToCart } = useCart();
 
+    // Debug: Let's see what we're getting
+  console.log('Product data:', product);
+  console.log('Product variants:', product.variants);
+
   const handleAddToCart = () => {
     if (!selectedVariant) {
       alert("Please select a size first");
@@ -24,6 +28,7 @@ const ProductDisplay = ({ product }) => {
   };
 
   const handleVariantSelect = (variant) => {
+     console.log('Selected variant:', variant);
     setSelectedVariant(variant);
   };
 
@@ -44,7 +49,7 @@ const ProductDisplay = ({ product }) => {
         {/* Size selection */}
         <VariantSelector
           label="Choose Size"
-          options={product.variamts}
+          options={product.variants}
           selectedVariant={selectedVariant}
           onVariantSelect={handleVariantSelect}
         />
