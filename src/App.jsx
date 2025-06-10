@@ -4,12 +4,12 @@ import AppRouter from "./routes/AppRouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { CartProvider } from "./context/CartContext";
 
-const  App =() => {
+const App = () => {
   return (
-  <CartProvider>
-    <AppRouter />
-  </CartProvider>
-)
-}
+    <CartProvider>
+      <AppRouter />
+    </CartProvider>
+  );
+};
 
 export default App;
