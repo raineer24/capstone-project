@@ -2,7 +2,7 @@ const Image = ({
     src,
     alt,
     className = '',
-    onclick,
+    onClick,
     ...props
 }) => {
     return (
