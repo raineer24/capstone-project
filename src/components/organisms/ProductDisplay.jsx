@@ -41,7 +41,18 @@ const ProductDisplay = ({ product}) => {
                     ₱{product.price.toLocaleString()}
                 </p>
 
-                {/* */}
+                {/* Size selection */}
+                <VariantSelector 
+                label="Choose Size"
+                options={product.variamts}
+                selectedVariant={selectedVariant}
+                onVariantSelect={handleVariantSelect}
+                />
+
+                {/* Add to cart button */}
+                <Button onClick={handleAddToCart} className="w-full">
+                    Add to Cart
+                </Button>
             </div>
         </div>
     )
