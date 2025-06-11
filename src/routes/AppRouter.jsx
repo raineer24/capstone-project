@@ -12,6 +12,7 @@ import {
 import Home from "../pages/Home";
 import CreateUser from '../pages/CreateUser';
 import EditUser from "../pages/EditUser"
+import Product from '../pages/Product';
 
 const AppRouter = () => (
   <Router>
@@ -19,6 +20,7 @@ const AppRouter = () => (
       <Route path="/" element={<Home />} />
       <Route path="/create" element={<CreateUser />} />
       <Route path="/edit/:id" element={<EditUser />} />
+      <Route path="/product" element={<Product/>} />
     </Routes>
   </Router>
 );
