@@ -19,11 +19,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }, 0);
   };
 
-  const getCartCount = () => {
+  const getCartCount = (): number => {
     return cartItems.length;
   };
 
-  const contextValue = {
+  const contextValue: CartContextType = {
     cartItems,
     addToCart,
     getCartCount,
