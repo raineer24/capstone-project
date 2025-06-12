@@ -1,11 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
+import { CartProduct, CartContextType } from "../types";
 
-export const CartContext = createContext();
+export const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+interface CartProviderProps {
+  children: ReactNode;
+}
 
-  const addToCart = (product) => {
+export const CartProvider = ({ children }: CartProviderProps) => {
+  const [cartItems, setCartItems] = useState<CartProduct[]>([]);
+
+  const addToCart = (product: CartProduct): void => {
     console.log("Adding to cart", product);
     setCartItems((previousItems) => [...previousItems, product]);
 

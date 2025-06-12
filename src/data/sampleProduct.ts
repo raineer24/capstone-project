@@ -1,5 +1,7 @@
-// src/data/sampleProduct.js
-export const sampleProduct = {
+// src/data/sampleProduct.ts
+import { Product } from '../types';
+
+export const sampleProduct: Product = {
     id: 1,
     name: 'Premium BJJ Gi',
     description: 'High-quality Brazilian Jiu-Jitsu gi made from durable cotton. Perfect for training and competition.',
