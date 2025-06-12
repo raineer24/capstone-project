@@ -8,7 +8,14 @@ import './index.css';
 import 'react-toastify/dist/ReactToastify.css'; // <-- Import CSS
 import { ToastContainer } from 'react-toastify';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById('root');
+
+if(!rootElement) {
+  throw new Error('Failed to find root element');
+}
+
+const root = ReactDOM.createRoot(rootElement);
+root.render(
   <React.StrictMode>
     <App />
     <ToastContainer /> 
