@@ -2,12 +2,12 @@ import { useState } from "react";
 import ProductGallery from "./ProductGallery";
 import VariantSelector from "../molecules/VariantSelector";
 import Button from "../atoms/Button";
-import { useCart } from "../../hooks/useCart";
+import { useReduxCart } from "../../hooks/useReduxCart";
 
 const ProductDisplay = ({ product }) => {
   const [selectedVariant, setSelectedVariant] = useState("");
 
-  const { addToCart } = useCart();
+  const { addToCart } = useReduxCart();
 
     // Debug: Let's see what we're getting
   console.log('Product data:', product);
