@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useAppDispatch, useAppSelector  } from "./";
-import { cartActions } from "../store/slices";
+import { cartActions } from "../store/slices/cartSlice";
 import { CartProduct } from "../types";
 
 export const useReduxCart = () => {
