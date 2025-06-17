@@ -1,6 +1,5 @@
 import { useCallback } from "react";
-import { useAppDispatch } from "./useAppDispatch";
-import { useAppSelector } from "./useAppSelector";
+import { useAppDispatch, useAppSelector  } from "./";
 import { cartActions } from "../store/slices";
 import { CartProduct } from "../types";
 
