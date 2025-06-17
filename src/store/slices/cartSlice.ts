@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
         state.totalItems = state.items.reduce((total, item) =>
             total + (item.quantity || 1), 0
         )
-    }
+    },
 
     updateQuantity: (state, action: PayloadAction<{
         id: number;
@@ -74,11 +74,11 @@ export const cartSlice = createSlice({
         } 
 
          
-    }
+    },
      clearCart: (state) => {
         state.items = [];
         state.totalItems = 0;
-    }
+    },
 
     setLoading: (state, action: PayloadAction<boolean>) => {
         state.isLoading =action.payload
@@ -89,5 +89,9 @@ export const cartSlice = createSlice({
 
 
    
-})
+});
+
+export const CartActions = cartSlice.actions;
+
+export default cartSlice.reducer;
 
