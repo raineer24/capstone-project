@@ -19,4 +19,11 @@ export interface AuthContextType {
     logout: () => void;
 }
 
-export interface Message {}
+export interface Message {
+    id: number;
+    sender: string;
+    content: string;
+    time: string;
+    isOwn: boolean;
+    role: string;
+}
