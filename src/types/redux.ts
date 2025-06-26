@@ -13,7 +13,7 @@ export interface AddToCartPayload {
 export interface RemoveFromCartPayload {
     productId: number;
     variant: string;
-    quantity: number;
+  
 }
 
 export interface UpdateQuantityPayload {
